@@ -14,6 +14,7 @@ class RocketGuideApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: AppTheme.light(),
         darkTheme: AppTheme.dark(),
         home: Provider.value(value: backend, child: HomeScreen()),

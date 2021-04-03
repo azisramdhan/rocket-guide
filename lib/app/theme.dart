@@ -18,11 +18,19 @@ class AppTheme {
         brightness: Brightness.dark,
         accentColor: _accentColor,
         textTheme: textTheme,
-        primaryTextTheme: textTheme);
+        primaryTextTheme: textTheme,
+        dividerTheme: _dividerTheme,
+        elevatedButtonTheme: _elevatedButtonTheme);
   }
 
   static const _primaryColor = Colors.black;
-  static const _accentColor = Colors.blueGrey;
+  static const _accentColor = Colors.white;
+
+  static const _dividerTheme = DividerThemeData(space: 0.0, indent: 16.0);
+
+  static final _elevatedButtonTheme = ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+          primary: _primaryColor, onPrimary: _accentColor));
 
   static TextTheme _getTextTheme(Brightness brightness) {
     final themeData = ThemeData(brightness: brightness);
