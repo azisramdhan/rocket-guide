@@ -10,6 +10,11 @@ class HomeScreen extends StatelessWidget {
     return Container(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+              icon: Icon(Icons.logout),
+              onPressed: () {
+                context.read<Backend>().signOut();
+              }),
           title: Text('Rocket Guide'),
         ),
         body: FutureBuilder<List<Rocket>>(

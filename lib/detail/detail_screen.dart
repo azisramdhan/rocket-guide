@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:rocket_guide/backend/backend.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:provider/provider.dart';
 
 class RocketDetailsScreen extends StatelessWidget {
   const RocketDetailsScreen({Key key, @required this.rocket})
@@ -32,6 +33,35 @@ class RocketDetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(rocket.name),
+        actions: [
+          StreamBuilder<List<String>>(
+            stream: context.read<Backend>().favouritedRocket,
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+              final favoritedRocket = snapshot.data;
+              final isRocketFavorited = favoritedRocket.contains(rocket.id);
+
+              return IconButton(
+                  icon: isRocketFavorited
+                      ? Icon(
+                          AntIcons.heart,
+                          color: Colors.redAccent,
+                        )
+                      : Icon(AntIcons.heart_outline),
+                  onPressed: () {
+                    context.read<Backend>().setFavoritedRocket(
+                          id: rocket.id,
+                          favorited: !isRocketFavorited,
+                        );
+                  });
+            },
+          )
+        ],
       ),
       body: ListView(
         children: [

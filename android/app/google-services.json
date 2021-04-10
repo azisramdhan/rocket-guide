@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "245661891607",
+    "project_id": "rocket-guide-d6b50",
+    "storage_bucket": "rocket-guide-d6b50.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245661891607:android:400b93ffdd2af399c6f052",
+        "android_client_info": {
+          "package_name": "dev.fluttercommunity.rocket_guide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "245661891607-3fofclsaeu1p9v861iqld93lngdo3oh3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-PMWAIX-RmlFyuiOFvrgxKTvbdKxzQBw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "245661891607-3fofclsaeu1p9v861iqld93lngdo3oh3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 
@@ -8,8 +10,33 @@ class Backend {
 
   final String hostUrl;
 
+  Stream<User> get currentUserStream => FirebaseAuth.instance.userChanges();
+
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
+  Future<void> signUp() async {
+    await FirebaseAuth.instance.signInAnonymously();
+  }
+
+  Stream<List<String>> get favouritedRocket {
+    final userId = FirebaseAuth.instance.currentUser.uid;
+
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .snapshots()
+        .map((documentSnapshot) {
+      if (!documentSnapshot.exists) {
+        return [];
+      }
+      return List<String>.from(documentSnapshot.data()['favorited_rocket']);
+    });
+  }
+
   Future<List<Rocket>> getRockets() async {
-    final url = '$hostUrl/rockets';
+    final url = Uri.parse('$hostUrl/rockets');
 
     final response = await http.get(url);
 
@@ -35,6 +62,24 @@ class Backend {
     }).toList();
 
     return rockets;
+  }
+
+  Future<void> setFavoritedRocket(
+      {@required String id, @required bool favorited}) async {
+    final currentFavoritedRockets = await favouritedRocket.first;
+    print(currentFavoritedRockets);
+    if (favorited && !currentFavoritedRockets.contains(id)) {
+      currentFavoritedRockets.add(id);
+    } else if (!favorited && currentFavoritedRockets.contains(id)) {
+      currentFavoritedRockets.remove(id);
+    }
+    print(currentFavoritedRockets);
+
+    final userId = FirebaseAuth.instance.currentUser.uid;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .set({'favorited_rocket': currentFavoritedRockets});
   }
 }
 
