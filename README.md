@@ -1,4 +1,4 @@
-[![Codemagic build status](https://api.codemagic.io/apps/61a3aaa50ca5fe2fa2288ee5/61a3aaa50ca5fe2fa2288ee4/status_badge.svg)](https://codemagic.io/apps/61a3aaa50ca5fe2fa2288ee5/61a3aaa50ca5fe2fa2288ee4/latest_build)
+[![Codemagic build status](https://api.codemagic.io/apps/61a3aaa50ca5fe2fa2288ee5/61a3aaa50ca5fe2fa2288ee4/status_badge.svg)](https://codemagic.io/apps/61a3aaa50ca5fe2fa2288ee5/61a3aaa50ca5fe2fa2288ee4/latest_build) ![example workflow](https://github.com/azisramdhan/rocket-guide/actions/workflows/flutter-ci.yml/badge.svg?branch=main)
 
 # Rocket Guide
 
