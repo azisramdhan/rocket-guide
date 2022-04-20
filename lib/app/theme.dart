@@ -4,23 +4,26 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTheme {
   static ThemeData light() {
     final textTheme = _getTextTheme(Brightness.light);
-    return ThemeData(
+    final ThemeData theme = ThemeData(
         primaryColor: _primaryColor,
-        accentColor: _accentColor,
         textTheme: textTheme,
         primaryTextTheme: textTheme);
+
+    return theme.copyWith(
+        colorScheme: theme.colorScheme.copyWith(secondary: _accentColor));
   }
 
   static ThemeData dark() {
     final textTheme = _getTextTheme(Brightness.dark);
-    return ThemeData(
+    final ThemeData theme = ThemeData(
         primaryColor: _primaryColor,
         brightness: Brightness.dark,
-        accentColor: _accentColor,
         textTheme: textTheme,
         primaryTextTheme: textTheme,
         dividerTheme: _dividerTheme,
         elevatedButtonTheme: _elevatedButtonTheme);
+    return theme.copyWith(
+        colorScheme: theme.colorScheme.copyWith(secondary: _accentColor));
   }
 
   static const _primaryColor = Colors.black;
