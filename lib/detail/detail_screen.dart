@@ -17,12 +17,6 @@ class RocketDetailsScreen extends StatelessWidget {
   int get _daysSinceFirstFlight =>
       rocket.firstFlight.difference(DateTime.now()).abs().inDays;
 
-  String get _firstFlightLabel {
-    final date = rocket.firstFlight;
-
-    return '${date.year}-${date.month}-${date.day}';
-  }
-
   String get _firstFlightLabelFormatted =>
       DateFormat.yMMMd().format(rocket.firstFlight);
 
